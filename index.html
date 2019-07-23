@@ -14,13 +14,25 @@
     </style>
   </head>
   <body>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
-    </script>
     <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      $(function () {
+        const socket = io()
+        $('form').submit(function () {
+          socket.emit('chat message', $('#m').val())
+          $('#m').val('')
+          return false
+        })
+        socket.on('chat message', msg => {
+          $('#messages').append($('<li>').text(msg))
+          window.scrollTo(0, document.body.scrollHeight)
+        })
+      })
+    </script>
   </body>
 </html>

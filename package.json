@@ -4,7 +4,7 @@
   "description": "my first socket.io app",
   "private": true,
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "fix": "standard --fix"
   },
   "license": "MIT",
